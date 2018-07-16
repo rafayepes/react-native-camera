@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import PropTypes from 'prop-types';
-import { mapValues } from 'lodash';
 import {
   findNodeHandle,
   Platform,
@@ -440,6 +439,13 @@ export default class Camera extends React.Component<PropsType, StateType> {
 
     return value;
   }
+}
+
+function mapValues(obj, iterator) {
+  return Object.keys(obj).reduce((acc, key) => ({
+    ...acc,
+    [key]: iterator(obj[key], key)
+  }), {});
 }
 
 export const Constants = Camera.Constants;
